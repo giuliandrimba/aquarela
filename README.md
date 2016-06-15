@@ -1,4 +1,4 @@
-### ARTWORK
+### Aquarela
 
 ![artwork](dist/thumbnail.jpg)
 
