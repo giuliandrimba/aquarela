@@ -13,6 +13,8 @@ module.exports = function(engine){
   var artworkPath = undefined;
   var filename = undefined;
 
+  env.type = {server:true}
+
   env.save = function(){
     filename = config.name + "_" + moment().format("YYYYMMDDHHmmss") + ".jpg";
     artworkPath = path.resolve(__dirname, '..', '..', 'dist') + '/'+filename

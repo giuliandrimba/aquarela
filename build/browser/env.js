@@ -8,6 +8,8 @@ module.exports = function(engine) {
   var PRINT_HEIGHT = undefined;
   var PADDING = 30;
 
+  env.type = {browser:true}
+
   env.done = function(){
     engine.stop();
     env.save()
