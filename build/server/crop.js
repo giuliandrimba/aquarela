@@ -22,7 +22,7 @@ img.onload = function () {
   var reg = img.src.match(/\/.*\/(.*).jpg/)
   var name = 'thumbnail.jpg'
   if(reg.length > 1){
-    name = \reg[1] + "_thumbnail.jpg";
+    name = reg[1] + "_thumbnail.jpg";
     console.log(reg[1])
   }
 

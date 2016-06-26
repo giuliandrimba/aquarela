@@ -12,4 +12,5 @@ var engine = loop(function(dt) {
 var serverEnv = env(engine);
 var ctx = serverEnv.createContext();
 sketch.setup(ctx, serverEnv);
+
 console.log("– Artwork started at ".yellow + moment().format("HH:mm:ss").green)

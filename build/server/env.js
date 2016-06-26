@@ -12,11 +12,13 @@ module.exports = function(engine){
   var context = undefined;
   var artworkPath = undefined;
   var filename = undefined;
+  var timestamp = moment().format("YYYYMMDD_HHmmss");
 
   env.type = {server:true}
 
   env.save = function(){
-    filename = config.name + "_" + moment().format("YYYYMMDDHHmmss") + ".jpg";
+    timestamp = moment().format("YYYYMMDD_HHmmss")
+    filename = config.name + "_" + timestamp + ".jpg";
     artworkPath = path.resolve(__dirname, '..', '..', 'dist') + '/'+filename
     artworkPath = artworkPath.replace(" ", "_");
     var out = fs.createWriteStream(artworkPath);
@@ -63,6 +65,17 @@ module.exports = function(engine){
       }
       var result = data.replace(/<title>(.*)<\/title>/g, "<title>"+config.name+"</title>");
       fs.writeFile(indexFile, result, 'utf8', function (err) {
+         if (err) return console.log(err);
+      });
+    });
+
+    var configFile = path.resolve(__dirname, '..', '..', "config.json");
+    fs.readFile(configFile, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      var result = data.replace(/"version":"(.*)"/g, "\"version\":\""+ timestamp +"\"");
+      fs.writeFile(configFile, result, 'utf8', function (err) {
          if (err) return console.log(err);
       });
     });

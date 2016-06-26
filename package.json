@@ -6,14 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "browser": "node_modules/budo/bin/cmd.js build/browser.js --dir public -l --css",
-    "dist": "node build/server.js",
-    "start": "npm run browser"
+    "server": "node build/server.js",
+    "tag": "node build/tag.js"
   },
   "author": "Giulian Drimba <giuliandrimba@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "budo": "^8.3.0",
     "http-server": "^0.8.0",
-    "budo": "^8.3.0"
+    "nodegit": "^0.14.1"
   },
   "dependencies": {
     "canvas": "^1.3.15",
