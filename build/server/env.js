@@ -5,6 +5,8 @@ var moment = require("moment");
 var colors = require('colors');
 var Canvas = require('canvas');
 var crop = require("./crop");
+var Canvas = require('canvas');
+var Image = Canvas.Image;
 
 module.exports = function(engine){
   var env = {};
@@ -31,6 +33,17 @@ module.exports = function(engine){
     console.log("– Artwork saved at ".green + artworkPath.toString().green)
   }
 
+  env.Image = Image;
+
+  env.loadImage = function(src, cb){
+    fs.readFile(__dirname + "/../../public" +src, function(err, squid){
+      if (err) throw err;
+      img = new Image;
+      img.src = squid;
+      cb(img);
+    });
+  }
+
   env.done = function() {
     engine.stop()
     env.save()
@@ -43,6 +56,12 @@ module.exports = function(engine){
   env.createContext = function(){
     canvas = new Canvas(parseInt(config.width), parseInt(config.height));
     ctx = canvas.getContext('2d');
+    return ctx;
+  }
+
+  env.createCanvas = function(){
+    var canvas = new Canvas(parseInt(config.width), parseInt(config.height));
+    var ctx = canvas.getContext('2d');
     return ctx;
   }
   
