@@ -4,5 +4,5 @@ var loop = require('raf-loop');
 
 var engine = loop(function(dt) { sketch.draw() }).start()
 var browserEnv = env(engine);
-var ctx = browserEnv.createContext()
+var ctx = browserEnv.createContext(true)
 sketch.setup(ctx, browserEnv);
