@@ -23,8 +23,8 @@ exports.setup = function(_ctx, _env){
   NUM_COLS = Math.ceil(ctx.canvas.width / COL_WIDTH)
   NUM_ROWS = Math.ceil(ctx.canvas.height / COL_HEIGHT);
 
-  START_X = ctx.canvas.width / 2
-  START_Y = ctx.canvas.height - 50
+  START_X = ctx.canvas.width / 2 - 11
+  START_Y = ctx.canvas.height - 100
   background("#fff");
   drawLetter()
 }
@@ -37,9 +37,6 @@ function drawLetter() {
   var total = alphabet.A.length;
   ctx.beginPath();
   ctx.moveTo(START_X + parseFloat(alphabet.A[0]), START_Y + parseFloat(alphabet.A[1]));
-  // ctx.lineTo(START_X + parseFloat(alphabet.A[0]), START_Y + parseFloat(alphabet.A[1]));
-  // ctx.lineTo(START_X + parseFloat(alphabet.A[2]), START_Y + parseFloat(alphabet.A[3]));
-  // ctx.lineTo(START_X + parseFloat(alphabet.A[4]), START_Y + parseFloat(alphabet.A[5]));
   for(var i = 0; i < total; i+= 2) {
     ctx.lineTo(START_X + parseFloat(alphabet.A[i]),START_Y + parseFloat(alphabet.A[i + 1]));
   }
