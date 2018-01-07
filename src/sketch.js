@@ -1,33 +1,49 @@
+var alphabet = require('./alphabet')
+
 var ctx = undefined;
 var env = undefined;
+var imageCanvas = undefined;
+var image = undefined;
+var texts = []
+var NUM_COLS = 20;
+var COL_WIDTH = 0;
+var NUM_ROWS = 20;
+var COL_HEIGHT = 0;
+
+var START_X = 0;
+var START_Y = 0;
 
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
 
+  COL_WIDTH = 15
+  COL_HEIGHT =15;
+
+  NUM_COLS = Math.ceil(ctx.canvas.width / COL_WIDTH)
+  NUM_ROWS = Math.ceil(ctx.canvas.height / COL_HEIGHT);
+
+  START_X = ctx.canvas.width / 2
+  START_Y = ctx.canvas.height - 50
   background("#fff");
-  placeholder();
-  setTimeout(function(){
-    env.done();
-  }, 1000)
+  drawLetter()
 }
 
 exports.draw = function() {
 
 }
 
-function placeholder() {
-  ctx.fillStyle = "#000";
-  var fontSize = ctx.canvas.width / 2.5;
-  ctx.font = fontSize + "px serif";
-  var textMeasure = ctx.measureText("Aquarela");
-  var marginLeft = ctx.canvas.width * 0.01;
-  ctx.fillText("Aquarela", marginLeft, ctx.canvas.height / 0.97);
-
-  var radius = ctx.canvas.width / 30;
+function drawLetter() {
+  var total = alphabet.A.length;
   ctx.beginPath();
-  ctx.arc(marginLeft + radius * 2,marginLeft + radius * 2,radius,0,Math.PI*2,true); // Outer circle
-  ctx.fill()
+  ctx.moveTo(START_X + parseFloat(alphabet.A[0]), START_Y + parseFloat(alphabet.A[1]));
+  // ctx.lineTo(START_X + parseFloat(alphabet.A[0]), START_Y + parseFloat(alphabet.A[1]));
+  // ctx.lineTo(START_X + parseFloat(alphabet.A[2]), START_Y + parseFloat(alphabet.A[3]));
+  // ctx.lineTo(START_X + parseFloat(alphabet.A[4]), START_Y + parseFloat(alphabet.A[5]));
+  for(var i = 0; i < total; i+= 2) {
+    ctx.lineTo(START_X + parseFloat(alphabet.A[i]),START_Y + parseFloat(alphabet.A[i + 1]));
+  }
+  ctx.stroke();
 }
 
 function background(color){

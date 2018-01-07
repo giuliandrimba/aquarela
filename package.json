@@ -9,9 +9,14 @@
     "server": "node build/server.js",
     "tag": "node build/tag.js"
   },
+  "browserify": {
+    "transform": [ "babelify" ]
+  },
   "author": "Giulian Drimba <giuliandrimba@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babelify": "^8.0.0",
     "budo": "^8.3.0",
     "http-server": "^0.8.0",
     "nodegit": "^0.14.1"
