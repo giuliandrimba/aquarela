@@ -7,7 +7,7 @@ var _ = require('underscore');
 class Letter {
   constructor(x, y, form, ctx) {
     this.x = x;
-    this.y = y;
+    this.y = y + 25;
     this.form = form;
     this.ctx = ctx;
     this.MAX_FITNESS = undefined;
@@ -15,6 +15,8 @@ class Letter {
     this.done = false;
     this.MAX = window.innerWidth / 2
     this.numDone = 0;
+    this.CENTER_X = this.ctx.canvas.width / 2;
+    this.CENTER_Y = this.ctx.canvas.height / 2;
 
     this.done = false;
     this.dna = DNA.generate(this.form, ctx.canvas.width, ctx.canvas.height);
@@ -42,19 +44,31 @@ class Letter {
 
   draw() {
     var total = this.dna.length;
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = 'white';
+    this.ctx.strokeStyle = 'rgba(0,,0,0.5)';
+    // // // this.ctx.globalCompositeOperation = "hard-light";
     this.ctx.beginPath();
-    // this.ctx.moveTo(this.x + parseFloat(this.dna[i].x), this.y + parseFloat(this.dna[i].y));
     for (var i = 0; i < total; i++) {
-      this.ctx.rect(this.x + parseFloat(this.dna[i].x), this.y + parseFloat(this.dna[i].y), this.dna[i].r, this.dna[i].r);
-      this.ctx.rect(this.x + parseFloat(this.dna[i].x + 5), this.y + parseFloat(this.dna[i].y + 5), this.dna[i].r, this.dna[i].r);
-      // this.ctx.rect(this.x + parseFloat(this.dna[i].x - 5), this.y + parseFloat(this.dna[i].y - 5), this.dna[i].r, this.dna[i].r);
-      // this.ctx.lineTo(this.x + parseFloat(this.dna[i].x), this.y + parseFloat(this.dna[i].y));
-      // this.ctx.arc(this.x + parseFloat(this.dna[i].x), this.y + parseFloat(this.dna[i].y), this.dna[i].r / 10, 0, 2 * Math.PI);
+      let x = this.x + parseFloat(this.dna[i].x);
+      let y = this.y + parseFloat(this.dna[i].y);
+      let r = this.dna[i].r;
+      var initY = Math.random() * (this.CENTER_Y * 2)
+      this.drawline(0, 0, x, y)
+      // this.drawRect(x, y, r);
       // ctx.stroke();
     }
     // this.ctx.fill();
     this.ctx.stroke();
+  }
+
+  drawRect(x, y, r) {
+    this.ctx.rect(x, y, r, r);
+    this.ctx.rect(x + 5, y + 5, r, r);
+  }
+
+  drawline(fromX, fromY, x, y) {
+    this.ctx.moveTo(fromX, fromY);
+    this.ctx.lineTo(x,y);
   }
 
   evolve() {
@@ -67,7 +81,7 @@ class Letter {
     
     this.dna = this.dna.map((item, i)=>{
       dist = Calc.dist(this.form[count], this.form[count + 1], item.x, item.y);
-      if (dist > 15) {
+      if (dist > 2) {
         item.x = Math.min(this.MAX,parseFloat(item.x) + randomRange(dist))
         item.y = Math.min(this.MAX,parseFloat(item.y) + randomRange(dist))
         item.r = dist / 5

@@ -19,7 +19,8 @@ var letter = undefined;
 var time = undefined;
 var current = undefined;
 
-var USED_LETTER = alphabet.A;
+var USED_LETTER = alphabet.C;
+var saved = false;
 
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
@@ -36,21 +37,23 @@ exports.setup = function(_ctx, _env){
   START_X = ctx.canvas.width / 2 - 11
   START_Y = ctx.canvas.height - 100
   letter = new Letter(START_X, START_Y, USED_LETTER, ctx);
-  background("#fff");
-  letter.draw()
-  drawLetter()
 }
 
 exports.draw = function() {
   current = Date.now()
-  
-  if(current > time + 50) {
+  if(current > time) {
     time = current
     if(letter.evolve()) {
-      background("rgba(255,255,255,1)");
+      background("rgba(255,255,255,0.1)");
       letter.draw()
+    } else {
+      if (!saved) {
+        console.log('done')
+        env.done()
+        saved = true;
+      }
     }
-    drawLetter()
+    // drawLetter()
   }
 }
 
