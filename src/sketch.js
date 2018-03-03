@@ -19,6 +19,8 @@ var letter = undefined;
 var time = undefined;
 var current = undefined;
 
+var USED_LETTER = alphabet.A;
+
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
@@ -33,7 +35,7 @@ exports.setup = function(_ctx, _env){
 
   START_X = ctx.canvas.width / 2 - 11
   START_Y = ctx.canvas.height - 100
-  letter = new Letter(START_X, START_Y,alphabet.A, ctx);
+  letter = new Letter(START_X, START_Y, USED_LETTER, ctx);
   background("#fff");
   letter.draw()
   drawLetter()
@@ -42,26 +44,23 @@ exports.setup = function(_ctx, _env){
 exports.draw = function() {
   current = Date.now()
   
-  if(current > time + 10) {
+  if(current > time + 50) {
     time = current
     if(letter.evolve()) {
-      background("rgba(255,255,255,0.1)");
+      background("rgba(255,255,255,1)");
       letter.draw()
     }
-    // drawLetter()
+    drawLetter()
   }
 }
 
 function drawLetter() {
-  var total = alphabet.A.length;
+  var total = USED_LETTER.length;
   ctx.beginPath();
-  // ctx.fillStyle = "rgba(255,255,255,1)";
-  ctx.moveTo(START_X + parseFloat(alphabet.A[0]), START_Y + parseFloat(alphabet.A[1]));
   for(var i = 0; i < total; i+= 2) {
-    ctx.lineTo(START_X + parseFloat(alphabet.A[i]),START_Y + parseFloat(alphabet.A[i + 1]));
+    ctx.lineTo(START_X + parseFloat(USED_LETTER[i]), START_Y + parseFloat(USED_LETTER[i + 1]));
   }
   ctx.stroke();
-  // ctx.fill();
 }
 
 function background(color){
