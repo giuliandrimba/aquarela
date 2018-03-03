@@ -45,15 +45,14 @@ class Letter {
   draw() {
     var total = this.dna.length;
     this.ctx.fillStyle = 'white';
-    this.ctx.strokeStyle = 'rgba(0,,0,0.5)';
-    // // // this.ctx.globalCompositeOperation = "hard-light";
+    this.ctx.strokeStyle = 'rgba(0,0,0, 0.4)';
+    this.ctx.globalCompositeOperation = "hard-light";
     this.ctx.beginPath();
     for (var i = 0; i < total; i++) {
       let x = this.x + parseFloat(this.dna[i].x);
       let y = this.y + parseFloat(this.dna[i].y);
       let r = this.dna[i].r;
-      var initY = Math.random() * (this.CENTER_Y * 2)
-      this.drawline(0, 0, x, y)
+      this.drawline(this.CENTER_X, this.CENTER_Y, x, y)
       // this.drawRect(x, y, r);
       // ctx.stroke();
     }

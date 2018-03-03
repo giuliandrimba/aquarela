@@ -19,7 +19,7 @@ var letter = undefined;
 var time = undefined;
 var current = undefined;
 
-var USED_LETTER = alphabet.C;
+var USED_LETTER = alphabet.Q;
 var saved = false;
 
 exports.setup = function(_ctx, _env){
@@ -34,8 +34,8 @@ exports.setup = function(_ctx, _env){
 
   time = Date.now()
 
-  START_X = ctx.canvas.width / 2 - 11
-  START_Y = ctx.canvas.height - 100
+  START_X = ctx.canvas.width / 2 - 20
+  START_Y = ctx.canvas.height - 85
   letter = new Letter(START_X, START_Y, USED_LETTER, ctx);
 }
 
@@ -48,7 +48,6 @@ exports.draw = function() {
       letter.draw()
     } else {
       if (!saved) {
-        console.log('done')
         env.done()
         saved = true;
       }
