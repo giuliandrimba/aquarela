@@ -15,8 +15,8 @@ class Letter {
     this.done = false;
     this.MAX = window.innerWidth / 2
     this.numDone = 0;
-    this.CENTER_X = this.ctx.canvas.width / 2;
-    this.CENTER_Y = this.ctx.canvas.height / 2;
+    this.CENTER_X = x;
+    this.CENTER_Y = y;
 
     this.done = false;
     this.dna = DNA.generate(this.form, ctx.canvas.width, ctx.canvas.height);
@@ -51,7 +51,7 @@ class Letter {
     for (var i = 0; i < total; i++) {
       let x = this.x + parseFloat(this.dna[i].x);
       let y = this.y + parseFloat(this.dna[i].y);
-      let r = this.dna[i].r;
+      let r = this.dna[i].r * 0.5;
       this.drawline(this.CENTER_X, this.CENTER_Y, x, y)
       // this.drawRect(x, y, r);
       // ctx.stroke();
