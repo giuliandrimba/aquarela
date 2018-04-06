@@ -3,9 +3,9 @@ exports.generate = function(letter, maxWidth, maxHeight) {
   var totalPoints = Math.round(letter.length / 2)
   var count = 0;
   for(var i = 0; i < totalPoints; i++) {
-    let x = parseFloat(parseFloat(letter[count]) + randomRange()).toFixed(2)
-    let y = parseFloat(parseFloat(letter[count + 1]) + randomRange()).toFixed(2)
-    let p = {x,y}
+    var x = parseFloat(parseFloat(letter[count]) + randomRange()).toFixed(2)
+    var y = parseFloat(parseFloat(letter[count + 1]) + randomRange()).toFixed(2)
+    var p = {x,y}
     points.push(p)
     count = i * 2;
   }
