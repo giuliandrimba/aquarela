@@ -9,10 +9,11 @@ var current = undefined;
 
 var ALPHABET_LETTERS = alphabet.ALL;
 var saved = false;
-var letters = [];
 var drawnLetters = [];
 var TOTAL = ALPHABET_LETTERS.length
 var totalDone = 0;
+
+const divisions = 100;
 
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
@@ -22,16 +23,31 @@ exports.setup = function(_ctx, _env){
 
   background("rgba(255,255,255,1)");
   
-  var x = ctx.canvas.width / 2 - 20;
-  var y = ctx.canvas.height - 80;
-  // var index = Math.floor(Math.random() * TOTAL);
-  var index = 25;
-  var letter = new Letter(x, y, alphabet.scale(0.8,ALPHABET_LETTERS[index]), ctx);
-  letters.push(letter);
-  letter.draw()
-  env.save()
+  var letterX = 0 
+  var letterY = ctx.canvas.height - 80;
+  const height = ctx.canvas.height / divisions;
+  for(var i = 0; i < divisions; i++) {
+    drawRow(ctx, i, height);
+    var letter = new Letter(letterX + Math.random() * 50, letterY, ctx);
+    letter.draw()
+  }
+  // env.save()
+}
 
-  drawnLetters = letters.slice();
+const drawRow = (ctx, i, height)=> {
+  ctx.fillStyle = '#FFFFFF'
+  ctx.beginPath();
+  let x1 = 0;
+  let x2 = ctx.canvas.width;
+  let y1 = i * height;
+  let y2 = (i * height) + height;
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y1);
+  ctx.lineTo(x2, y2);
+  ctx.lineTo(x1, y2);
+  ctx.lineTo(x1, y1);
+  ctx.fill()
+  ctx.stroke()
 }
 
 exports.draw = function() {
