@@ -12,8 +12,11 @@ var saved = false;
 var drawnLetters = [];
 var TOTAL = ALPHABET_LETTERS.length
 var totalDone = 0;
+var letters = "abcdefghijklmnopqrstuvwxyz".toUpperCase()
 
-const divisions = 100;
+const divisions = 30;
+var LETTER = getRandomletter()
+var LETTER = "L"
 
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
@@ -24,14 +27,16 @@ exports.setup = function(_ctx, _env){
   background("rgba(255,255,255,1)");
   
   var letterX = 0 
-  var letterY = ctx.canvas.height - 80;
+  var letterY = ctx.canvas.height - 87;
   const height = ctx.canvas.height / divisions;
   for(var i = 0; i < divisions; i++) {
+    ctx.save();
     drawRow(ctx, i, height);
-    var letter = new Letter(letterX + Math.random() * 50, letterY, ctx);
+    var letter = new Letter(LETTER, randomNumber() * (0.4 + (i * 0.0001)), letterY, ctx);
     letter.draw()
+    ctx.restore();
   }
-  // env.save()
+  env.save()
 }
 
 const drawRow = (ctx, i, height)=> {
@@ -48,10 +53,21 @@ const drawRow = (ctx, i, height)=> {
   ctx.lineTo(x1, y1);
   ctx.fill()
   ctx.stroke()
+  ctx.clip()
 }
 
 exports.draw = function() {
   
+}
+
+function randomNumber() {
+  var num = Math.floor(Math.random() * 99) + 1; // this will get a number between 1 and 99;
+  num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
+  return num;
+}
+
+function getRandomletter() {
+  return letters.charAt(Math.random() * letters.length - 1)
 }
 
 function background(color){
