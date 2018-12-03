@@ -8,7 +8,7 @@ exports.setup = function(_ctx, _env){
   background("#fff");
   placeholder();
   setTimeout(function(){
-    env.done();
+    // env.done();
   }, 1000)
 }
 
