@@ -5,7 +5,7 @@ Boilerplate for high-res generative artwork.
 ### Usage:
 Write your generative code using the HTML Canvas API inside `src/sketch.js`
 
-Your sketch receives 2 parameters, `_ctx` and `_env`.
+Your sketch receives 2 parameters, `_ctx`, `_env` and a utility `_scale` function receive a value and keep its ratio the same in the browser and server version.
 
 __ctx__: 
 Access to the canvas context used in both browser and server.
