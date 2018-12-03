@@ -3,10 +3,8 @@ var path = require("path")
 var config = require("../../config.json");
 var moment = require("moment");
 var colors = require('colors');
-var Canvas = require('canvas');
 var crop = require("./crop");
-var Canvas = require('canvas');
-var Image = Canvas.Image;
+const { createCanvas, Image } = require('canvas')
 
 module.exports = function(engine){
   var env = {};
@@ -54,13 +52,13 @@ module.exports = function(engine){
   }
 
   env.createContext = function(){
-    canvas = new Canvas(parseInt(config.width), parseInt(config.height));
+    canvas = createCanvas(parseInt(config.width), parseInt(config.height));
     ctx = canvas.getContext('2d');
     return ctx;
   }
 
   env.createCanvas = function(){
-    var canvas = new Canvas(parseInt(config.width), parseInt(config.height));
+    var canvas = createCanvas(parseInt(config.width), parseInt(config.height));
     var ctx = canvas.getContext('2d');
     return ctx;
   }
