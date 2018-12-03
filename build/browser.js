@@ -1,8 +1,9 @@
-var env = require("./browser/env");
-var sketch = require("../src/sketch")
-var loop = require('raf-loop');
+const env = require('./browser/env');
+const sketch = require('../src/sketch')
+const loop = require('raf-loop');
+const scale = require('./scale');
 
-var engine = loop(function(dt) { sketch.draw() }).start()
-var browserEnv = env(engine);
-var ctx = browserEnv.createContext(true)
-sketch.setup(ctx, browserEnv);
+const engine = loop(function(dt) { sketch.draw() }).start()
+const browserEnv = env(engine);
+const ctx = browserEnv.createContext(true)
+sketch.setup(ctx, browserEnv, scale(ctx));

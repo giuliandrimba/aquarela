@@ -1,9 +1,11 @@
-var ctx = undefined;
-var env = undefined;
+let ctx = undefined;
+let env = undefined;
+let scale = undefined;
 
-exports.setup = function(_ctx, _env){
+exports.setup = function(_ctx, _env, _scale){
   ctx = _ctx;
   env = _env;
+  scale = _scale;
 
   background("#fff");
   placeholder();
@@ -13,7 +15,7 @@ exports.setup = function(_ctx, _env){
 }
 
 exports.draw = function() {
-
+  
 }
 
 function placeholder() {

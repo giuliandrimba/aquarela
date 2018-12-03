@@ -23,6 +23,6 @@ You can change your artwork configuration at `config.json`
 
 #### Running
 
-To run your sketch on a high-resolution canvas in the server, run `npm run dist`.
+To run your sketch on a high-resolution canvas in the server, run `npm run server`.
 
-To run your sketch in a browser, run `npm start`.
+To run your sketch in a browser, run `npm run browser`.
