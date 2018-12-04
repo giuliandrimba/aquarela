@@ -53,8 +53,8 @@ module.exports = function(engine){
 
   env.createContext = function(){
     canvas = createCanvas(parseInt(config.width), parseInt(config.height));
-    ctx = canvas.getContext('2d');
-    return ctx;
+    const context = canvas.getContext('2d');
+    return { context, canvas };
   }
 
   env.createCanvas = function(){

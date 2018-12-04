@@ -8,15 +8,16 @@ module.exports = function(engine) {
   var PRINT_HEIGHT = undefined;
   var PADDING = 30;
 
+  
   env.type = {browser:true}
-
+  
   env.done = function(){
     engine.stop();
     env.save()
   }
-
+  
   env.Image = Image;
-
+  
   env.loadImage = function(src, cb){
     var img = new Image;
     img.onload = function(){
@@ -24,7 +25,7 @@ module.exports = function(engine) {
     }
     img.src = src;
   }
-
+  
   env.save = function(){
     var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     var a = document.createElement('a');
@@ -36,18 +37,20 @@ module.exports = function(engine) {
     a.click();
     document.body.removeChild(a);
   }
-
+  
   env.createContext = function(addToBody){
     canvas = document.createElement("canvas");
     context = canvas.getContext('2d');
     PRINT_WIDTH = config.width;
     PRINT_HEIGHT = config.height;
+    env.PRINT_WIDTH = PRINT_WIDTH;
+    env.PRINT_HEIGHT = PRINT_HEIGHT;
     env.resize(canvas);
     if(addToBody) {
       document.body.appendChild(canvas);
       document.title = config.name;
     }
-    return context;
+    return { context, canvas };
   }
 
   env.createCanvas = function(){
