@@ -8,15 +8,18 @@ const engine = loop(function(dt) { sketch.draw() }).start()
 const browserEnv = env(engine);
 const { context, canvas } = browserEnv.createContext(true)
 
+console.log(context.canvas.width)
+
 const two = new Two({
-    width: browserEnv.PRINT_WIDTH,
-    height: browserEnv.PRINT_HEIGHT,
+    width: canvas.width,
+    height: canvas.height,
     domElement: canvas
 })
 
 const globals = {
-    context,
-    canvas,
-    two
+    _context: context,
+    _canvas: canvas,
+    _two: two,
+    _Two: Two,
 }
 sketch.setup(globals, browserEnv, scale(context));

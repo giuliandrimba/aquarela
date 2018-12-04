@@ -15,15 +15,24 @@ var engine = loop(function(dt) {
 var serverEnv = env(engine);
 const { context, canvas } = serverEnv.createContext();
 Two.Utils.shim(canvas, serverEnv.Image);
+const tmpDone = serverEnv.done;
+
+serverEnv.done = () => {
+  two.render()
+  tmpDone()
+}
+
 two = new Two({
   width: config.width,
   height: config.height,
   domElement: canvas
 })
+
 const globals = {
-  context,
-  canvas,
-  two
+  _context: context,
+  _canvas: canvas,
+  _two: two,
+  _Two: Two,
 }
 sketch.setup(globals, serverEnv, scale(context));
 
