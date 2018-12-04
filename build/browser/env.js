@@ -52,16 +52,7 @@ module.exports = function(engine) {
     }
     return { context, canvas };
   }
-
-  env.createCanvas = function(){
-    var canvas = document.createElement("canvas");
-    var context = canvas.getContext('2d');
-    PRINT_WIDTH = config.width;
-    PRINT_HEIGHT = config.height;
-    env.resize(canvas);
-    return context;
-  }
-
+  
   env.resize = function(canvas){
 
     if(PRINT_WIDTH > PRINT_HEIGHT) {

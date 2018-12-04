@@ -1,16 +1,16 @@
-var fs = require('fs');
-var path = require("path")
-var config = require("../../config.json");
-var moment = require("moment");
-var colors = require('colors');
-var crop = require("./crop");
+const fs = require('fs');
+const path = require("path")
+const config = require("../../config.json");
+const moment = require("moment");
+const colors = require('colors');
+const crop = require("./crop");
 const { createCanvas, Image } = require('canvas')
 
 module.exports = function(engine){
-  var env = {};
-  var canvas = undefined;
-  var context = undefined;
-  var artworkPath = undefined;
+  const env = {};
+  let canvas = undefined;
+  let context = undefined;
+  let artworkPath = undefined;
   var filename = undefined;
   var timestamp = moment().format("YYYYMMDD_HHmmss");
 
@@ -55,12 +55,6 @@ module.exports = function(engine){
     canvas = createCanvas(parseInt(config.width), parseInt(config.height));
     const context = canvas.getContext('2d');
     return { context, canvas };
-  }
-
-  env.createCanvas = function(){
-    var canvas = createCanvas(parseInt(config.width), parseInt(config.height));
-    var ctx = canvas.getContext('2d');
-    return ctx;
   }
   
   function updateReadme(){
