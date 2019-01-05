@@ -8,7 +8,6 @@ let background = undefined;
 let circle = undefined;
 let canvasWidth;
 let canvasHeight;
-
 exports.setup = function({ _two, _Two, _env, _scale }){
   env = _env;
   scale = _scale;
@@ -23,7 +22,7 @@ exports.setup = function({ _two, _Two, _env, _scale }){
   circle.fill = '#FFFFFF'
   circle.stroke = 'none';
   setTimeout(() => {
-    env.done()
+    env.save()
   }, 1000)
 }
 

@@ -1,22 +1,33 @@
 ## Aquarela
 
-Boilerplate for high-res generative artwork.
+Framework for high-res generative sketches using Javascript.
 
 ### Usage:
-Write your generative code using the HTML Canvas API inside `src/sketch.js`
+Write your generative code using the Two.js API inside `src/sketch.js`. The needs to have 2 methods: `setup` and `draw`.
 
-Your sketch receives 2 parameters, `_ctx`, `_env` and a utility `_scale` function receive a value and keep its ratio the same in the browser and server version.
+Your sketch receives 4 parameters:
 
-__ctx__: 
-Access to the canvas context used in both browser and server.
+___two__: 
+Your Two.js instance
+
+___Two__: 
+The Two.js constructor function
 
 __env__: 
 
-When your algorithm is complete, just call `env.done` to save the image at `dist/NAME_OF_THE_ARTWORK`.
+The env object as the specified API:
 
-If you want to save an image, but continue to run the algorithm, call `env.save`.
+#### save
+Save your artwork w/o stopping its execution (draw loop). The image will be located at `dist/NAME_OF_THE_ARTWORK`.
 
-Also, make sure you export the methods `setup` and `draw`.
+#### done
+Save your artwork stopping its execution (draw loop). The image will be located at `dist/NAME_OF_THE_ARTWORK`.
+
+#### loadImage
+Loads an image from the public folder (browser and server), it has a callback as a paremeter returning the Image element.
+
+#### type
+Return if the environment is server or browser.
 
 #### Config
 You can change your artwork configuration at `config.json`
