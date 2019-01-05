@@ -4,11 +4,9 @@ const sketch = require('../src/sketch')
 const loop = require('raf-loop');
 const scale = require('./scale');
 
-const engine = loop(function(dt) { sketch.draw() }).start()
+const engine = loop(function (dt) { sketch.draw() }).start()
 const browserEnv = env(engine);
 const { context, canvas } = browserEnv.createContext(true)
-
-console.log(context.canvas.width)
 
 const two = new Two({
     width: canvas.width,
@@ -17,9 +15,9 @@ const two = new Two({
 })
 
 const globals = {
-    _context: context,
-    _canvas: canvas,
     _two: two,
     _Two: Two,
+    _env: browserEnv,
+    _scale: scale(context),
 }
-sketch.setup(globals, browserEnv, scale(context));
+sketch.setup(globals);

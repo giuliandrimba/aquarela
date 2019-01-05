@@ -29,11 +29,12 @@ two = new Two({
 })
 
 const globals = {
-  _context: context,
-  _canvas: canvas,
   _two: two,
   _Two: Two,
+  _env: serverEnv,
+  _scale: scale(context),
 }
-sketch.setup(globals, serverEnv, scale(context));
+
+sketch.setup(globals);
 
 console.log("– Artwork started at ".yellow + moment().format("HH:mm:ss").green)
