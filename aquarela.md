@@ -16,17 +16,17 @@ The Two.js constructor function
 `_env`: 
 The env object as the specified API:
 
-  `save`:
-  Save your artwork w/o stopping its execution (draw loop). The image will be located at `dist/NAME_OF_THE_ARTWORK`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp`save`:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspSave your artwork w/o stopping its execution (draw loop). The image will be located at `dist/NAME_OF_THE_ARTWORK`.
 
-  `done`:
-  Save your artwork stopping its execution (draw loop). The image will be located at `dist/NAME_OF_THE_ARTWORK`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp`done`:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspSave your artwork stopping its execution (draw loop). The image will be located at `dist/NAME_OF_THE_ARTWORK`.
 
-  `loadImage`:
-  Loads an image from the public folder (browser and server), it has a callback as a paremeter returning the Image element.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp`loadImage`:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspLoads an image from the public folder (browser and server), it has a callback as a paremeter returning the Image element.
 
-  `type`:
-  Return if the environment is server or browser.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp`type`:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspReturn if the environment is server or browser.
 
 #### Config
 You can change your artwork configuration at `config.json`
