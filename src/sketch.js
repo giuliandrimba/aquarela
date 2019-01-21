@@ -21,9 +21,9 @@ exports.setup = function({ _two, _Two, _env, _scale }){
   circle = two.makeCircle(canvasWidth / 2, canvasHeight / 2, scale(100));
   circle.fill = '#FFFFFF'
   circle.stroke = 'none';
-  setTimeout(() => {
-    env.save()
-  }, 1000)
+  // setTimeout(() => {
+  //   env.save()
+  // }, 1000)
 }
 
 exports.draw = function() {

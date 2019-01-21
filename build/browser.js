@@ -17,6 +17,8 @@ const two = new Two({
 const globals = {
     _two: two,
     _Two: Two,
+    _context: context,
+    _canvas: canvas,
     _env: browserEnv,
     _scale: scale(context),
 }
