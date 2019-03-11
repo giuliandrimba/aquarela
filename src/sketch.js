@@ -9,20 +9,19 @@ let background = undefined;
 let circle = undefined;
 let canvasWidth;
 let canvasHeight;
-exports.setup = function({ _two, _Two, _canvas, _context, _env, _scale }){
+exports.setup = function({ _canvas, _context, _env, _scale }){
   env = _env;
   scale = _scale;
-  two = _two;
-  Two = _Two;
   canvas = _canvas;
   context = _context;
-  canvasWidth = two.renderer.domElement.width;
-  canvasHeight = two.renderer.domElement.height;
-  // setTimeout(() => {
-  //   env.save()
-  // }, 1000)
+  canvasWidth = _canvas.width;
+  canvasHeight = _canvas.height;
+  context.fillStyle = '#FFFFFF'
+  context.rect(0, 0, canvasWidth, canvasHeight);
+  context.fill();
+  env.done();
 }
 
 exports.draw = function() {
-  // two.update();
+  
 }
